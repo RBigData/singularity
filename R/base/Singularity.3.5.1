@@ -30,6 +30,6 @@ From: ubuntu:bionic
   wget https://cran.r-project.org/src/base/R-3/R-${VERSION}.tar.gz
   tar zxf R-${VERSION}.tar.gz
   cd R-${VERSION}
-  ./configure --with-x=no --enable-R-shlib=no --enable-memory-profiling=no --with-blas="-lopenblas" --with-lapack
+  ./configure --with-x=no --enable-R-shlib=yes --enable-memory-profiling=no --with-blas="-lopenblas" --with-lapack
   make && make install
   rm -rf /tmp/R-${VERSION}*
