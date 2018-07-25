@@ -1,0 +1,4 @@
+#!/bin/sh
+
+rm -rf r_3.5.1.simg
+sudo singularity build r_3.5.1.simg Singularity.3.5.1

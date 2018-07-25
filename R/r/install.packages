@@ -1,0 +1,65 @@
+#!/usr/bin/env r
+
+# This is free and unencumbered software released into the public domain.
+# 
+# Anyone is free to copy, modify, publish, use, compile, sell, or
+# distribute this software, either in source code form or as a compiled
+# binary, for any purpose, commercial or non-commercial, and by any
+# means.
+# 
+# In jurisdictions that recognize copyright laws, the author or authors
+# of this software dedicate any and all copyright interest in the
+# software to the public domain. We make this dedication for the benefit
+# of the public at large and to the detriment of our heirs and
+# successors. We intend this dedication to be an overt act of
+# relinquishment in perpetuity of all present and future rights to this
+# software under copyright law.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+# 
+# For more information, please refer to <http://unlicense.org/>
+
+if (is.null(argv) | length(argv) < 1)
+{
+  cat("Usage: install.packages a b c ...\n")
+  q(status=-1L)
+}
+
+throw_on_err = function(x, msg)
+{
+  if (length(x) > 0)
+  {
+    errmsg = paste(
+      paste0(msg, ":\n"),
+      '**********************************\n',
+      paste0(x, collapse=', '),
+      '\n**********************************'
+    )
+    
+    stop(errmsg, call.=FALSE)
+  }
+}
+
+
+
+pkgs = argv
+lib = "/usr/local/lib/R/site-library"
+repos = "https://cran.rstudio.com/"
+quiet = FALSE
+
+av.names = rownames(available.packages(repos=repos))
+not.avail = names(which(sapply(pkgs, function(pkg) ! (pkg %in% av.names))))
+throw_on_err(not.avail, "unavailable packages")
+
+install.packages(pkgs=pkgs, lib=lib, repos=repos, quiet=quiet)
+
+pkgs = installed.packages()[,'Package']
+failed = names(which(sapply(argv, function(pkg) !(pkg %in% pkgs))))
+throw_on_err(failed, "failed to build packages")
+
