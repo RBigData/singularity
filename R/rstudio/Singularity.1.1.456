@@ -1,5 +1,5 @@
 Bootstrap: localimage
-From: ../base/r-base_3.5.1.simg
+From: ../r/r_3.5.1.simg
 
 %labels
   Rstudio_Version 1.1.456

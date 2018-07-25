@@ -1,4 +1,4 @@
-FROM r-base
+FROM r
 
 ENV VERSION="1.1.456"
 
