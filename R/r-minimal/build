@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sudo docker build -t r-minimal . \
+  && sudo docker run -i -t --rm r-minimal
+
