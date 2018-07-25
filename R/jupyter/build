@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sudo docker build -t jupyter . \
+  && sudo docker run -i -t --rm -e JUPYTER_PORT=7856 jupyter
+

@@ -1,0 +1,25 @@
+Bootstrap: localimage
+From: ../r/r_3.5.1.simg
+
+
+%runscript
+  exec jupyter notebook --port=$JUPYTER_PORT --allow-root --no-browser --ip=0.0.0.0 --notebook-dir=/jupyter
+
+
+
+%post
+  apt-get update
+  apt-get install -y python3 python3-pip libcairo2-dev libzmq5
+
+  python3 -m pip install --upgrade pip
+  python3 -m pip install numpy
+  python3 -m pip install matplotlib
+  python3 -m pip install pandas
+  python3 -m pip install jupyter
+
+  install.packages pbdZMQ repr gdtools
+  install.packages JuniperKernel
+  Rscript -e "JuniperKernel::installJuniper(useJupyterDefault=TRUE)"
+
+  mkdir -p /jupyter
+

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+rm -rf jupyter.simg
+sudo singularity build jupyter.simg Singularity
