@@ -1,0 +1,4 @@
+#!/bin/sh
+
+rm -rf rstudio_1.1.456.simg
+sudo singularity build rstudio_1.1.456.simg Singularity.1.1.456
