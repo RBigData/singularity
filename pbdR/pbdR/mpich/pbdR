@@ -1,0 +1,2 @@
+#!/bin/bash
+mpirun -np $1 Rscript --no-restore --no-environ "${@:2}"

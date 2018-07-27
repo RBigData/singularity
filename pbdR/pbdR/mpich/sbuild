@@ -1,0 +1,6 @@
+#!/bin/sh
+
+export VERSION="1.0-1"
+
+rm -rf pbdr-mpich_${VERSION}.simg
+sudo singularity build pbdr-mpich_${VERSION}.simg Singularity.${VERSION}

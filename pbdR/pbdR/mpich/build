@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sudo docker build -t pbdr-mpich . \
+  && sudo docker run -i -t --rm pbdr-mpich
+
