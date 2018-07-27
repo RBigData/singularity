@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sudo docker build -t pbdr-openmpi-minimal . \
+  && sudo docker run -i -t --rm pbdr-openmpi-minimal
+

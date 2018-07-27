@@ -1,0 +1,6 @@
+#!/bin/sh
+
+export VERSION="1.0-1"
+
+rm -rf pbdr-openmpi-minimal_${VERSION}.simg
+sudo singularity build pbdr-openmpi-minimal_${VERSION}.simg Singularity.${VERSION}
