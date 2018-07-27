@@ -10,13 +10,13 @@ From: ../r-minimal/r-minimal_3.5.1.simg
   export LC_ALL=en_US.UTF-8
 
 %apprun R
-  exec R "--no-save --quiet --vanilla $@"
+  exec R "--no-save --quiet --no-restore --no-environ $@"
 
 %apprun Rscript
-  exec Rscript "--vanilla $@"
+  exec Rscript "--no-restore --no-environ $@"
 
 %runscript
-  exec R "--no-save --quiet --vanilla $@"
+  exec R "--no-save --quiet --no-restore --no-environ $@"
 
 
 
@@ -44,12 +44,14 @@ From: ../r-minimal/r-minimal_3.5.1.simg
     feather \
     foreach \
     fst \
+    getPass \
     hdf5r \
     jsonlite \
     knitr \
     mclust \
     memuse \
     mlbench \
+    openssl \
     randomForest \
     Rcpp \
     RcppArmadillo \
@@ -64,4 +66,10 @@ From: ../r-minimal/r-minimal_3.5.1.simg
     testthat \
     tidyverse \
     xml2
-
+  
+  cd /tmp && wget https://github.com/jalvesaq/colorout/releases/download/v1.2-0/colorout_1.2-0.tar.gz
+  R CMD INSTALL /tmp/colorout_1.2-0.tar.gz
+  
+  echo "options(bitmapType='cairo')" >> /usr/local/lib/R/etc/Rprofile.site
+  rm -rf /tmp/*
+  apt-get autoclean

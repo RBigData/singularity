@@ -25,12 +25,14 @@ RUN install.packages \
   feather \
   foreach \
   fst \
+  getPass \
   hdf5r \
   jsonlite \
   knitr \
   mclust \
   memuse \
   mlbench \
+  openssl \
   randomForest \
   Rcpp \
   RcppArmadillo \
@@ -45,6 +47,13 @@ RUN install.packages \
   testthat \
   tidyverse \
   xml2
+
+RUN cd /tmp && wget https://github.com/jalvesaq/colorout/releases/download/v1.2-0/colorout_1.2-0.tar.gz
+RUN R CMD INSTALL /tmp/colorout_1.2-0.tar.gz
+
+RUN rm -rf /tmp/*
+RUN apt-get autoclean
+
 
 #CMD ["R"]
 CMD ["/bin/bash"]
