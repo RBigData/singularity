@@ -1,0 +1,4 @@
+#!/bin/sh
+
+sudo docker build -t r-minimal-ppc64le . \
+  && sudo docker run -i -t --rm r-minimal-ppc64le
