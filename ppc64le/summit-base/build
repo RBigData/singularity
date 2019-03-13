@@ -1,0 +1,4 @@
+#!/bin/sh
+
+sudo docker build -t summit-base . \
+  && sudo docker run -i -t --rm summit-base
