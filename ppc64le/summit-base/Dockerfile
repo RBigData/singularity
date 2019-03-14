@@ -10,4 +10,15 @@ RUN apt-get update && apt-get install -y wget build-essential gfortran
 RUN apt-get autoremove
 RUN apt-get autoclean
 
+ENV SPECTRUM_PATH="/opt/spectrum"
+ENV PATH="${SPECTRUM_PATH}/bin:${PATH}"
+ENV LD_LIBRARY_PATH="${SPECTRUM_PATH}/lib:${LD_LIBRARY_PATH}"
+
+RUN mkdir /opt/hello
+COPY mpi-hello.c /opt/hello
+RUN mpicc /opt/hello/mpi-hello.c -o /opt/hello/mpi-hello
+
+ENV PATH="/opt/hello/:${PATH}"
+
 CMD bash
+
