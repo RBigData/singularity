@@ -18,6 +18,7 @@ From: ubuntu:bionic
   exec R "--no-save --quiet --no-restore --no-environ $@"
 
 %post
+  export DEBIAN_FRONTEND=noninteractive
   export APT_OPTS="-y -o DPkg::Options::=--force-confdef"
   export VERSION="3.5.1"
   export MAKE="make -j 17"
